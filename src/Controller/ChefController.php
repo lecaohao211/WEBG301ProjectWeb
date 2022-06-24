@@ -31,5 +31,23 @@ class ChefController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/chef/details/{id}", name="chef_details")
+     */
+    public
+    function detailsAction($id)
+    {
+        $chefs = $this->getDoctrine()
+            ->getRepository(Chef::class)
+            ->find($id);
+
+        return $this->render('chef/detail.html.twig', [
+            'chefs' => $chefs
+        ]);
+    }
+
+
+
+
 
 }
