@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {{ form_start(form) }}
+<div class="form-group">
+    <label for="name">Name:</label>
+    {{ form_widget(form.name,{
+        'attr':{
+            'class':'form-control',
+            'placeholder': 'Task name'
+        }
+    }) }}
+    <div class="invalid-feedback">
+        {{ form_errors(form.name) }}
+    </div>
+</div>
+<div class="form-group">
+    <label for="priority">Gender:</label>
+    {{ form_widget(form.gender,{
+        'attr':{
+            'class':'form-control'
+        }
+    }) }}
+</div>
+<div class="form-group">
+    <label for="description">Salary:</label>
+    {{ form_widget(form.salary,{
+        'attr':{
+            'class':'form-control',
+            'placeholder': 'Enter the salary'
+        }
+    }) }}
+    <input type="submit" name="create_chef" value="Create" class="btn btn-primary"/>
+    {{ form_end(form) }}
+    {% endblock %}
