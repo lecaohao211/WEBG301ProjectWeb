@@ -1,29 +1,29 @@
-{#{% extends 'base.html.twig' %}#}
+{% extends 'base.html.twig' %}
 
-{#{% block body %}#}
-{#    <table class="table table-bordered table-sm">#}
-{#        <thead>#}
-{#        <tr>#}
-{#            <th style="color: #10397e; font-style: oblique">ID</th>#}
-{#            <th style="color: #10397e">Name</th>#}
-{#            <th>Action</th>#}
-{#        </tr>#}
-{#        </thead>#}
-{#        <tbody>#}
-{#        {% for chef in chefs %}#}
-{#            <tr>#}
-{#                <th scope="row">{{ chef.id }}</th>#}
-{#                <td>{{ chef.Name }}</td>#}
-{#                <td>#}
-{#                    <a href="{{ path('chef_details',{'id':chef.id}) }}"  class="btn btn-info">View</a>#}
-{#                    <a href="{{ path('chef_edit', {'id': chef.id}) }}" class='btn btn-default'>Edit</a>#}
-{#                   <a href="{{ path('chef_delete', {'id': chef.id}) }}" class='btn btn-danger'>Delete</a>#}
-{#                </td>#}
-{#            </tr>#}
-{#        {% endfor %}#}
-{#        </tbody>#}
-{#    </table>#}
-{#    </div>#}
+{% block body %}
+    <table class="table table-bordered table-sm">
+        <thead>
+        <tr>
+            <th style="color: #10397e; font-style: oblique">ID</th>
+            <th style="color: #10397e">Name</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for chef in chefs %}
+            <tr>
+                <th scope="row">{{ chef.id }}</th>
+                <td>{{ chef.Name }}</td>
+                <td>
+                    <a href="{{ path('chef_details',{'id':chef.id}) }}"  class="btn btn-info">View</a>
+                    <a href="{{ path('chef_edit', {'id': chef.id}) }}" class='btn btn-default'>Edit</a>
+                   <a href="{{ path('chef_delete', {'id': chef.id}) }}" class='btn btn-danger'>Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
 
-{#{% endblock %}#}
+{% endblock %}
 
