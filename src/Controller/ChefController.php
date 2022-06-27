@@ -83,7 +83,7 @@ class ChefController extends AbstractController
             return $this->redirectToRoute('chef_list');
         }
 
-        return $this->render('chef/new.html.twig', [
+        return $this->render('chef/create.html.twig', [
             'form' => $form->createView()
         ]);
     }

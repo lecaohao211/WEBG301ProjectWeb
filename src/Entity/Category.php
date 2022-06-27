@@ -22,10 +22,10 @@ class Category
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private $Name;
 
     /**
-     * @ORM\OneToMany(targetEntity=Food::class, mappedBy="category")
+     * @ORM\OneToMany(targetEntity=Food::class, mappedBy="CategoryID")
      */
     private $type;
 
@@ -41,12 +41,12 @@ class Category
 
     public function getName(): ?string
     {
-        return $this->name;
+        return $this->Name;
     }
 
-    public function setName(string $name): self
+    public function setName(string $Name): self
     {
-        $this->name = $name;
+        $this->Name = $Name;
 
         return $this;
     }
@@ -63,7 +63,7 @@ class Category
     {
         if (!$this->type->contains($type)) {
             $this->type[] = $type;
-            $type->setCategory($this);
+            $type->setCategoryID($this);
         }
 
         return $this;
@@ -73,16 +73,11 @@ class Category
     {
         if ($this->type->removeElement($type)) {
             // set the owning side to null (unless already changed)
-            if ($type->getCategory() === $this) {
-                $type->setCategory(null);
+            if ($type->getCategoryID() === $this) {
+                $type->setCategoryID(null);
             }
         }
 
         return $this;
-    }
-
-    public function __toString()
-    {
-        return (string) $this->getName();
     }
 }

@@ -56,7 +56,7 @@ class CategoryController extends AbstractController
             return $this->redirectToRoute('app_category');
         }
 
-        return $this->render('category/new.html.twig', [
+        return $this->render('category/create.html.twig', [
             'form' => $form->createView()
         ]);
     }
@@ -75,42 +75,7 @@ class CategoryController extends AbstractController
         }
         return false;
     }
-    /**
-     * @Route("/category/edit/{id}", name="category_edit")
-     */
-    public function editAction($id, Request $request)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $category = $em->getRepository(Category::class)->find($id);
 
-        $form = $this->createForm(CategoryType::class, $category);
 
-        if ($this->saveChanges($form, $request, $category)) {
-            $this->addFlash(
-                'notice',
-                'Category Edited'
-            );
-            return $this->redirectToRoute('app_category');
-        }
-        return $this->render('category/edit.html.twig', [
-            'form' => $form->createView()
-        ]);
-    }
 
-    /**
-     * @Route("/category/delete/{id}", name="category_delete")
-     */
-    public function deleteAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $category = $em->getRepository(Category::class)->find($id);
-        $em->remove($category);
-        $em->flush();
-
-        $this->addFlash(
-            'error',
-            'Category deleted'
-        );
-        return $this->redirectToRoute('app_category');
-    }
 }
