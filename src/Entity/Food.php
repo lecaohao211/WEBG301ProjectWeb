@@ -20,24 +20,22 @@ class Food
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Name;
-
-    /**
-     * @ORM\Column(type="float")
-     */
-    private $Price;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Chef::class, inversedBy="type")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $ChefID;
+    private $name;
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="type")
-     * @ORM\JoinColumn(nullable=false)
      */
-    private $CategoryID;
+    private $category;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $price;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Chef::class, inversedBy="type")
+     */
+    private $chefID;
 
     public function getId(): ?int
     {
@@ -46,49 +44,58 @@ class Food
 
     public function getName(): ?string
     {
-        return $this->Name;
+        return $this->name;
     }
 
-    public function setName(string $Name): self
+    public function setName(string $name): self
     {
-        $this->Name = $Name;
+        $this->name = $name;
 
         return $this;
     }
 
-    public function getPrice(): ?float
+    public function getCategory(): ?category
     {
-        return $this->Price;
+        return $this->category;
     }
 
-    public function setPrice(float $Price): self
+    public function setCategory(?category $category): self
     {
-        $this->Price = $Price;
+        $this->category = $category;
 
         return $this;
     }
 
-    public function getChefID(): ?Chef
+    public function getPrice(): ?int
     {
-        return $this->ChefID;
+        return $this->price;
     }
 
-    public function setChefID(?Chef $ChefID): self
+    public function setPrice(int $price): self
     {
-        $this->ChefID = $ChefID;
+        $this->price = $price;
 
         return $this;
     }
 
-    public function getCategoryID(): ?Category
+    public function getChefID(): ?chef
     {
-        return $this->CategoryID;
+        return $this->chefID;
     }
 
-    public function setCategoryID(?Category $CategoryID): self
+    public function setChefID(?chef $chefID): self
     {
-        $this->CategoryID = $CategoryID;
+        $this->chefID = $chefID;
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return (string) $this->getChefID();
+    }
+
+
+
+
 }

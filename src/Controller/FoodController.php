@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Food;
 use App\Form\Food1Type;
+use App\Form\FoodType;
 use App\Repository\FoodRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

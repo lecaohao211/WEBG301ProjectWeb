@@ -56,7 +56,7 @@
 //            return $this->redirectToRoute('app_category');
 //        }
 //
-//        return $this->render('category/create.html.twig', [
+//        return $this->render('category/new.html.twig', [
 //            'form' => $form->createView()
 //        ]);
 //    }

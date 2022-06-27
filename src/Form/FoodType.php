@@ -14,8 +14,8 @@ class FoodType extends AbstractType
         $builder
             ->add('Name')
             ->add('Price')
+            ->add('Category')
             ->add('ChefID')
-            ->add('CategoryID')
         ;
     }
 
@@ -24,5 +24,8 @@ class FoodType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Food::class,
         ]);
+    }
+    public function __toString() {
+        return $this->name;
     }
 }

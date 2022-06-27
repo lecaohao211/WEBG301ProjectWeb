@@ -22,20 +22,20 @@ class Chef
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Name;
+    private $name;
 
     /**
      * @ORM\Column(type="text")
      */
-    private $Gender;
+    private $gender;
 
     /**
      * @ORM\Column(type="float")
      */
-    private $Salary;
+    private $salary;
 
     /**
-     * @ORM\OneToMany(targetEntity=Food::class, mappedBy="ChefID")
+     * @ORM\OneToMany(targetEntity=Food::class, mappedBy="chefID")
      */
     private $type;
 
@@ -51,36 +51,36 @@ class Chef
 
     public function getName(): ?string
     {
-        return $this->Name;
+        return $this->name;
     }
 
-    public function setName(string $Name): self
+    public function setName(string $name): self
     {
-        $this->Name = $Name;
+        $this->name = $name;
 
         return $this;
     }
 
     public function getGender(): ?string
     {
-        return $this->Gender;
+        return $this->gender;
     }
 
-    public function setGender(string $Gender): self
+    public function setGender(string $gender): self
     {
-        $this->Gender = $Gender;
+        $this->gender = $gender;
 
         return $this;
     }
 
     public function getSalary(): ?float
     {
-        return $this->Salary;
+        return $this->salary;
     }
 
-    public function setSalary(float $Salary): self
+    public function setSalary(float $salary): self
     {
-        $this->Salary = $Salary;
+        $this->salary = $salary;
 
         return $this;
     }
@@ -113,5 +113,10 @@ class Chef
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return (string) $this->getName();
     }
 }

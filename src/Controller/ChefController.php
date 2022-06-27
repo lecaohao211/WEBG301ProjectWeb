@@ -83,7 +83,7 @@
 //            return $this->redirectToRoute('chef_list');
 //        }
 //
-//        return $this->render('chef/create.html.twig', [
+//        return $this->render('chef/new.html.twig', [
 //            'form' => $form->createView()
 //        ]);
 //    }
