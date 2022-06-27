@@ -17,7 +17,7 @@
                 <td>
                     <a href="{{ path('chef_details',{'id':chef.id}) }}"  class="btn btn-info">View</a>
                     <a href="{{ path('chef_edit', {'id': chef.id}) }}" class='btn btn-default'>Edit</a>
-                   <a href="{{ path('chef_delete', {'id': chef.id}) }}" class='btn btn-danger'>Delete</a>
+                    <a href="{{ path('chef_delete', {'id': chef.id}) }}" class='btn btn-danger'>Delete</a>
                 </td>
             </tr>
         {% endfor %}
@@ -26,4 +26,3 @@
     </div>
 
 {% endblock %}
-
