@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+
 use App\Entity\Chef;
 use App\Form\ChefType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -103,6 +104,31 @@ class ChefController extends AbstractController
         }
         return false;
     }
+
+    /**
+     * @Route("/chef/edit/{id}", name="chef_edit")
+     */
+    public function editAction($id, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $chef = $em->getRepository(Chef::class)->find($id);
+
+        $form = $this->createForm(ChefType::class, $chef);
+
+        if ($this->saveChanges($form, $request, $chef)) {
+            $this->addFlash(
+                'notice',
+                'Chef Edited'
+            );
+            return $this->redirectToRoute('chef_list');
+        }
+
+        return $this->render('chef/edit.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+
 
 
 
