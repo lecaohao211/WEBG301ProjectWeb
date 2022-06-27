@@ -26,4 +26,25 @@ class FoodController extends AbstractController
     }
 
 
+    /**
+     * @Route("/new", name="app_food_new", methods={"GET", "POST"})
+     */
+    public function new(Request $request, FoodRepository $foodRepository): Response
+    {
+        $food = new Food();
+        $form = $this->createForm(FoodType::class, $food);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $foodRepository->add($food, true);
+
+            return $this->redirectToRoute('app_food_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('food/new.html.twig', [
+            'food' => $food,
+            'form' => $form,
+        ]);
+    }
+
 }
