@@ -74,6 +74,7 @@ class CategoryController extends AbstractController
             return true;
         }
         return false;
+
     }
     /**
      * @Route("/category/edit/{id}", name="category_edit")
@@ -96,7 +97,6 @@ class CategoryController extends AbstractController
             'form' => $form->createView()
         ]);
     }
-
     /**
      * @Route("/category/delete/{id}", name="category_delete")
      */
@@ -113,4 +113,8 @@ class CategoryController extends AbstractController
         );
         return $this->redirectToRoute('app_category');
     }
+
+
+
+
 }
