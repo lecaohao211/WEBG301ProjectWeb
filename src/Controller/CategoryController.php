@@ -97,6 +97,20 @@ class CategoryController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/category/delete/{id}", name="category_delete")
+     */
+    public function deleteAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $category = $em->getRepository(Category::class)->find($id);
+        $em->remove($category);
+        $em->flush();
 
-
+        $this->addFlash(
+            'error',
+            'Category deleted'
+        );
+        return $this->redirectToRoute('app_category');
+    }
 }
