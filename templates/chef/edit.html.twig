@@ -2,7 +2,7 @@
 
 {% block body %}
     {{ form_start(form) }}
-<div class="form-group">
+<div class="form-group row">
     <label for="name">Name:</label>
     {{ form_widget(form.name,{
         'attr':{
@@ -14,7 +14,7 @@
         {{ form_errors(form.name) }}
     </div>
 </div>
-<div class="form-group">
+<div class="form-group row">
     <label for="priority">Gender:</label>
     {{ form_widget(form.gender,{
         'attr':{
@@ -22,7 +22,7 @@
         }
     }) }}
 </div>
-<div class="form-group">
+<div class="form-group row">
     <label for="description">Salary:</label>
     {{ form_widget(form.salary,{
         'attr':{
@@ -30,7 +30,8 @@
             'placeholder': 'Enter the salary'
         }
     }) }}
-    <input type="submit" name="edit_chef" value="Edit" class="btn btn-primary"/>
-    {{ form_end(form) }}
 </div>
+    {{ form_end(form) }}
+    <input type="submit" name="edit_chef" value="Edit" class="btn btn-primary"/>
+
     {% endblock %}
