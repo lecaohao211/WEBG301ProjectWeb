@@ -2,11 +2,14 @@
 
 {% block title %}Edit Food{% endblock %}
 
+
+
 {% block body %}
     <h1>Edit Food</h1>
 
+    {{ include('food/form.html.twig', {'button_label': 'Update'}) }}
 
+    <a href="{{ path('app_food_index') }}">Back To List</a>
 
-
-
+    {{ include('food/delete.html.twig') }}
 {% endblock %}
