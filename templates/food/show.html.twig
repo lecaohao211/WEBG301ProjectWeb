@@ -24,6 +24,7 @@
 
     <a href="{{ path('app_food_index') }}">Back To List</a>
 
+    <a href="{{ path('app_food_edit', {'id': food.id}) }}">Edit</a>
 
-
+    {{ include('food/delete.html.twig') }}
 {% endblock %}
