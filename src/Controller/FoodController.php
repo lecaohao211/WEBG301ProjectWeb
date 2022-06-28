@@ -58,4 +58,24 @@ class FoodController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/{id}/edit", name="app_food_edit", methods={"GET", "POST"})
+     */
+    public function edit(Request $request, Food $food, FoodRepository $foodRepository): Response
+    {
+        $form = $this->createForm(FoodType::class, $food);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $foodRepository->add($food, true);
+
+            return $this->redirectToRoute('app_food_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('food/edit.html.twig', [
+            'food' => $food,
+            'form' => $form,
+        ]);
+    }
+
 }
