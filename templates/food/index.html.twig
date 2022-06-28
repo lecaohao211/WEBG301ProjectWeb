@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Food List{% endblock %}
+{% block title %}Food index{% endblock %}
 
 {% block body %}
-    <h1>Food List</h1>
+    <h1>Food index</h1>
 
     <table class="table">
         <thead>
@@ -11,6 +11,9 @@
             <th>Id</th>
             <th>Name</th>
             <th>Price</th>
+            <th>Chef</th>
+            <th>Category</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -19,7 +22,11 @@
                 <td>{{ food.id }}</td>
                 <td>{{ food.name }}</td>
                 <td>{{ food.price }}</td>
+                <td>{{ food.chefID ? food.chefID.name : '' }}</td>
+                <td>{{ food.category ? food.category.name : '' }}</td>
                 <td>
+                    <a href="{{ path('app_food_show', {'id': food.id}) }}">Show</a>
+                    <a href="{{ path('app_food_edit', {'id': food.id}) }}">Edit</a>
                 </td>
             </tr>
         {% else %}
@@ -29,5 +36,6 @@
         {% endfor %}
         </tbody>
     </table>
+
     <a href="{{ path('app_food_new') }}">Create new</a>
 {% endblock %}
