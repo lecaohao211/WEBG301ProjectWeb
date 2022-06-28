@@ -48,4 +48,14 @@ class FoodController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/{id}", name="app_food_show", methods={"GET"})
+     */
+    public function show(Food $food): Response
+    {
+        return $this->render('food/show.html.twig', [
+            'food' => $food,
+        ]);
+    }
+
 }
