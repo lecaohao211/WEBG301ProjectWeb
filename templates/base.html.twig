@@ -2,10 +2,13 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Hello{% endblock %}</title>
+    <title>{% block title %}Restaurant manager{% endblock %}</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
     {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="hieuung.js"></script>
     {% block stylesheets %}
 
         {{ encore_entry_link_tags('app') }}
@@ -19,6 +22,8 @@
 </head>
 <body>
 {% block body %}
+                <a class="navbar-brand" href="{{ path('app_category') }}">Category List</a>
+                <a class="navbar-brand" href="{{ path('chef_list') }}">Chefs List</a>
 {% endblock %}
 </body>
 </html>
