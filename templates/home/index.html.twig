@@ -3,7 +3,36 @@
 {% block title %}Home Page{% endblock %}
 
 {% block body %}
+    <style>
+        body{
+            background-image: url("https://media.vneconomy.vn/w800/images/upload/2021/04/20/1-1514170051592-0-0-579-1030-crop-1514170063460.jpg");
+            background-size: 640px;
+        }
+    </style>
 
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a href="{{ path('app_home') }}" class="navbar-brand">Restaurant</a>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                <div class="navbar-nav">
+                    <a href="{{ path('app_category') }}" class="nav-item nav-link active">Category List</a>
+                    <a href="{{ path('chef_list') }}" class="nav-item nav-link active">Chef List</a>
+                    <a href="{{ path ('app_food_index') }}" class="nav-item nav-link active" >Food List</a>
+                </div>
+            </div>
+            <form class="d-flex" >
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                    <button type="button" class="btn btn-secondary"><ion-icon name="search-outline"></ion-icon></button>
+                </div>
+            </form>
+            <div class="navbar-nav">
+                <a href="#" class="nav-item nav-link" ><ion-icon name="log-in-outline"></ion-icon>Login</a>
+            </div>
+        </div>
+        </div>
+    </nav>
 
 
 
