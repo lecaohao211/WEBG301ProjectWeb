@@ -1,6 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<a href="{{ path('chef_create') }}">
+    <button style="background-color: #5eb5e0;
+  margin: 10px 0 12px 5px;
+  color: white;
+  padding: 12px 16px;
+  font-size: 12px;
+  cursor: pointer;" class="btn"><i class="fa fa-plus"></i> Add A Chef</button>
+</a>
     <table class="table table-bordered table-sm">
         <thead>
         <tr>
@@ -23,5 +31,4 @@
         {% endfor %}
         </tbody>
     </table>
-
 {% endblock %}
