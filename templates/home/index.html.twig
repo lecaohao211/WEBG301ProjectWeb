@@ -8,6 +8,16 @@
             background-image: url("https://media.vneconomy.vn/w800/images/upload/2021/04/20/1-1514170051592-0-0-579-1030-crop-1514170063460.jpg");
             background-size: 640px;
         }
+        a:hover {
+            background: cornflowerblue;
+
+        }
+
+        a:active {
+
+            color: #666666;
+
+        }
     </style>
 
 
@@ -28,7 +38,7 @@
                 </div>
             </form>
             <div class="navbar-nav">
-                <a href="#" class="nav-item nav-link" ><ion-icon name="log-in-outline"></ion-icon>Login</a>
+                <a href="{{ path ('app_login') }}" class="nav-item nav-link" ><ion-icon name="log-in-outline"></ion-icon>Logout</a>
             </div>
         </div>
         </div>
