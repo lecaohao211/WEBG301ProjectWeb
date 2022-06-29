@@ -14,12 +14,8 @@ class FoodType extends AbstractType
         $builder
             ->add('Name')
             ->add('Price')
-            ->add('Category', EntityType::class, [
-                'class' => Categorie::class,
-
-            ])
+            ->add('Category')
             ->add('ChefID')
-
         ;
     }
 
