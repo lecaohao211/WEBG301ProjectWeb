@@ -113,8 +113,4 @@ class CategoryController extends AbstractController
         );
         return $this->redirectToRoute('app_category');
     }
-
-
-
-
 }
