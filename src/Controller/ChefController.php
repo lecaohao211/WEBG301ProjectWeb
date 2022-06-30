@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+
 use App\Entity\Chef;
 use App\Form\ChefType;
 use App\Repository\ChefRepository;
@@ -51,7 +52,7 @@ class ChefController extends AbstractController
      */
     public function show(Chef $chef): Response
     {
-        return $this->render('chef/show.html.twig', [
+        return $this->render('chef/detail.html.twig', [
             'chef' => $chef,
         ]);
     }
@@ -76,15 +77,23 @@ class ChefController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="app_chef_delete", methods={"POST"})
-     */
-    public function delete(Request $request, Chef $chef, ChefRepository $chefRepository): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$chef->getId(), $request->request->get('_token'))) {
-            $chefRepository->remove($chef, true);
-        }
 
-        return $this->redirectToRoute('app_chef_index', [], Response::HTTP_SEE_OTHER);
+    /**
+ * @Route("/delete/{id}", name="app_chef_delete")
+ */
+    public function deleteAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $chef = $em->getRepository(Chef::class)->find($id);
+        $em->remove($chef);
+        $em->flush();
+
+        $this->addFlash(
+            'error',
+            'A Chef deleted'
+        );
+
+        return $this->redirectToRoute('app_chef_index');
     }
 }
+
