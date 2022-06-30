@@ -8,7 +8,37 @@
     {{ form_start(registrationForm) }}
     <style>
         body{
-            background-color: antiquewhite;
+            background-color: #DBF9FC;
+            /*display: flex;*/
+            /*flex-direction: column;*/
+            /*justify-content: center;*/
+            /*align-items: center;*/
+            /*height: 100vh;*/
+            /*background-image: url("https://mondaycareer.com/wp-content/uploads/2020/11/background-%C4%91%E1%BA%B9p-3-1-768x512.jpg");*/
+        }
+        label {
+            width: 100px;
+            margin-right: 50px;
+            margin-bottom: 20px;
+        }
+        select,input {
+            min-width: 200px;
+            margin-bottom: 20px;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        h1 {
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        button {
+            width: 100%;
         }
     </style>
         {{ form_row(registrationForm.email) }}
@@ -18,6 +48,6 @@
         {{ form_row(registrationForm.lastname) }}
         {{ form_row(registrationForm.agreeTerms) }}
 
-        <button type="submit" class="btn">Register</button>
+        <button class="btn btn-primary" type="submit" class="btn">Register</button>
     {{ form_end(registrationForm) }}
 {% endblock %}
