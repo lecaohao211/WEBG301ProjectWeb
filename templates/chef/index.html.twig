@@ -1,6 +1,45 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
+    <style>
+
+        a:hover {
+            background: cornflowerblue;
+
+        }
+
+        a:active {
+
+            color: #666666;
+
+        }
+    </style>
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a href="{{ path('app_home') }}" class="navbar-brand">Restaurant</a>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                <div class="navbar-nav">
+                    <a href="{{ path('app_category_index') }}" class="nav-item nav-link active">Category List</a>
+                    <a href="{{ path('app_chef_index') }}" class="nav-item nav-link active">Chef List</a>
+                    <a href="{{ path ('app_food_index') }}" class="nav-item nav-link active" >Food List</a>
+                </div>
+            </div>
+            <form class="d-flex" >
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                    <button type="button" class="btn btn-secondary"><ion-icon name="search-outline"></ion-icon></button>
+                </div>
+            </form>
+            <div class="navbar-nav">
+                <a href="{{ path ('app_login') }}" class="nav-item nav-link" ><ion-icon name="log-in-outline"></ion-icon>Logout</a>
+            </div>
+        </div>
+        </div>
+    </nav>
+
 <a href="{{ path('app_chef_new') }}">
     <button style="background-color: #5eb5e0;
   margin: 10px 0 12px 5px;
