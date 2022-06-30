@@ -10,16 +10,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Food
 {
-//    /**
-//     * @var \Category
-//     *
-//     * @ORM\ManyToOne(targetEntity="Category")
-//     * @ORM\JoinColumns({
-//     *   @ORM\JoinColumn(name="category", referencedColumnName="id")
-//     * })
-//     */
-//    private $categoryCategory;
-
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -100,6 +90,10 @@ class Food
         return $this;
     }
 
+    public function __toString()
+    {
+        return (string) $this->getChefID();
+    }
 
 
 
