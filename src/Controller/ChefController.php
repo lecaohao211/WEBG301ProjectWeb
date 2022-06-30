@@ -5,52 +5,82 @@ namespace App\Controller;
 
 use App\Entity\Chef;
 use App\Form\ChefType;
+use App\Repository\ChefRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route("/chef")
+ */
 class ChefController extends AbstractController
 {
     /**
-     * @Route("/Chef", name="app_chef")
+     * @Route("/", name="app_chef_index", methods={"GET"})
      */
-    public function index(): Response
+    public function index(ChefRepository $chefRepository): Response
     {
         return $this->render('chef/index.html.twig', [
-            'controller_name' => 'ChefController',
+            'chefs' => $chefRepository->findAll(),
         ]);
     }
 
     /**
-     * @Route("/chef", name="chef_list")
+     * @Route("/new", name="app_chef_new", methods={"GET", "POST"})
      */
-    public function listAction()
+    public function new(Request $request, ChefRepository $chefRepository): Response
     {
-        $chefs = $this->getDoctrine()
-            ->getRepository(Chef::class)
-            ->findAll();
-        return $this->render('Chef/index.html.twig',['chefs'=> $chefs
+        $chef = new Chef();
+        $form = $this->createForm(ChefType::class, $chef);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $chefRepository->add($chef, true);
+
+            return $this->redirectToRoute('app_chef_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('chef/new.html.twig', [
+            'chef' => $chef,
+            'form' => $form,
         ]);
     }
 
     /**
-     * @Route("/chef/details/{id}", name="chef_details")
+     * @Route("/{id}", name="app_chef_show", methods={"GET"})
      */
-    public
-    function detailsAction($id)
+    public function show(Chef $chef): Response
     {
-        $chefs = $this->getDoctrine()
-            ->getRepository(Chef::class)
-            ->find($id);
-
         return $this->render('chef/detail.html.twig', [
-            'chefs' => $chefs
+            'chef' => $chef,
         ]);
     }
+
     /**
-     * @Route("/chef/delete/{id}", name="chef_delete")
+     * @Route("/{id}/edit", name="app_chef_edit", methods={"GET", "POST"})
      */
+    public function edit(Request $request, Chef $chef, ChefRepository $chefRepository): Response
+    {
+        $form = $this->createForm(ChefType::class, $chef);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $chefRepository->add($chef, true);
+
+            return $this->redirectToRoute('app_chef_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('chef/edit.html.twig', [
+            'chef' => $chef,
+            'form' => $form,
+        ]);
+    }
+
+
+    /**
+ * @Route("/delete/{id}", name="app_chef_delete")
+ */
     public function deleteAction($id)
     {
         $em = $this->getDoctrine()->getManager();
@@ -63,77 +93,7 @@ class ChefController extends AbstractController
             'A Chef deleted'
         );
 
-        return $this->redirectToRoute('chef_list');
+        return $this->redirectToRoute('app_chef_index');
     }
-
-    /**
-     * @Route("/chef/create", name="chef_create", methods={"GET","POST"})
-     */
-    public function createAction(Request $request)
-    {
-        $chef = new Chef();
-        $form = $this->createForm(ChefType::class, $chef);
-
-        if ($this->saveChanges($form, $request, $chef)) {
-            $this->addFlash(
-                'notice',
-                'Chef Added'
-            );
-
-            return $this->redirectToRoute('chef_list');
-        }
-
-        return $this->render('chef/create.html.twig', [
-            'form' => $form->createView()
-        ]);
-    }
-
-    public function saveChanges($form, $request, $chef)
-    {
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $chef->setName($request->request->get('chef')['name']);
-            $chef->setGender($request->request->get('chef')['gender']);
-            $chef->setSalary($request->request->get('chef')['salary']);
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($chef);
-            $em->flush();
-
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * @Route("/chef/edit/{id}", name="chef_edit")
-     */
-    public function editAction($id, Request $request)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $chef = $em->getRepository(Chef::class)->find($id);
-
-        $form = $this->createForm(ChefType::class, $chef);
-
-        if ($this->saveChanges($form, $request, $chef)) {
-            $this->addFlash(
-                'notice',
-                'Chef Edited'
-            );
-            return $this->redirectToRoute('chef_list');
-        }
-
-        return $this->render('chef/edit.html.twig', [
-            'form' => $form->createView()
-        ]);
-    }
-
-
-
-
-
-
-
-
-
 }
+

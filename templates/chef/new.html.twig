@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Chef{% endblock %}
+
+{% block body %}
+    <h1>Create new chef</h1>
+
+    {{ include('chef/form.html.twig') }}
+
+
+    <a href="{{ path('app_chef_index') }}">Back To List</a>
+{% endblock %}

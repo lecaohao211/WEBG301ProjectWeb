@@ -2,6 +2,8 @@
 
 namespace App\Form;
 
+use App\Entity\Category;
+use App\Entity\Chef;
 use App\Entity\Food;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -25,7 +27,5 @@ class FoodType extends AbstractType
             'data_class' => Food::class,
         ]);
     }
-    public function __toString() {
-        return $this->name;
-    }
+
 }

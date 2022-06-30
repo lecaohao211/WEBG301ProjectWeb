@@ -80,17 +80,6 @@ class FoodController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="app_food_delete", methods={"POST"})
-     */
-    public function delete(Request $request, Food $food, FoodRepository $foodRepository): Response
-    {
-        if ($this->isCsrfTokenValid('delete' . $food->getId(), $request->request->get('_token'))) {
-            $foodRepository->remove($food, true);
-        }
-
-        return $this->redirectToRoute('app_food_index', [], Response::HTTP_SEE_OTHER);
-    }
 
 
 

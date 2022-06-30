@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <a href="{{ path('chef_list') }}" class="btn btn-default">Back Chefs List</a>
+    <a href="{{ path('app_chef_index') }}" class="btn btn-default">Back Chefs List</a>
     <hr/>
-    <h2 class="page-header">{{ chefs.name }}</h2>
+    <h2 class="page-header">{{ chef.name }}</h2>
     <ul class="list-group  list-group-flush">
-        <li class="list-group-item active">Name: {{ chefs.name }}</li>
-        <li class="list-group-item disabled">Gender: {{ chefs.gender }}</li>
-        <li class="list-group-item ">Salary: <strong>{{ chefs.salary }}</strong></li>
+        <li class="list-group-item active">Name: {{ chef.name }}</li>
+        <li class="list-group-item disabled">Gender: {{ chef.gender }}</li>
+        <li class="list-group-item ">Salary: <strong>{{ chef.salary }}</strong></li>
     </ul>
 
 {% endblock %}
