@@ -4,101 +4,78 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Form\CategoryType;
+use App\Repository\CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route("/category")
+ */
 class CategoryController extends AbstractController
 {
 
 
     /**
-     * @Route("/category", name="app_category")
+     * @Route("/", name="app_category_index", methods={"GET"})
      */
-    public function index()
+    public function index(CategoryRepository $categoryRepository): Response
     {
-        $categories = $this->getDoctrine()
-            ->getRepository(Category::class)
-            ->findAll();
         return $this->render('category/index.html.twig', [
-            'categories' => $categories,
+            'categories' => $categoryRepository ->findAll(),
         ]);
     }
     /**
-     * @Route("/CategoryController/details/{id}", name="category_details")
+     * @Route("/new", name="app_category_new", methods={"GET","POST"})
      */
-    public
-    function detailsAction($id)
-    {
-        $categories = $this->getDoctrine()
-            ->getRepository(Category::class)
-            ->find($id);
-
-        return $this->render('category/details.html.twig', [
-            'categories' => $categories,
-        ]);
-    }
-    /**
-     * @Route("/category/create", name="category_create", methods={"GET","POST"})
-     */
-    public function createAction(Request $request)
+    public function new(Request $request, CategoryRepository $categoryRepository): Response
     {
         $category = new Category();
         $form = $this->createForm(CategoryType::class, $category);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $categoryRepository->add($category, true);
 
-        if ($this->saveChanges($form, $request, $category)) {
-            $this->addFlash(
-                'notice',
-                'Category Added'
-            );
-
-            return $this->redirectToRoute('app_category');
+            return $this->redirectToRoute('app_category_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('category/create.html.twig', [
-            'form' => $form->createView()
+        return $this->renderForm('category/new.html.twig', [
+            'category' => $category,
+            'form' => $form,
         ]);
     }
 
-    public function saveChanges($form, $request, $category)
+    /**
+     * @Route("/{id}", name="app_category_show", methods={"GET"})
+     */
+    public function show(Category $category): Response
     {
+        return $this->render('category/show.html.twig', [
+            'category' => $category,
+        ]);
+    }
+
+    /**
+     * @Route("/{id}/edit", name="app_category_edit", methods={"GET","POST"})
+     */
+    public function edit(Request $request, Category $category, CategoryRepository $categoryRepository): Response
+    {
+        $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $category->setName($request->request->get('category')['name']);
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($category);
-            $em->flush();
+            $categoryRepository->add($category, true);
 
-            return true;
+            return $this->redirectToRoute('app_category_index', [], Response::HTTP_SEE_OTHER);
         }
-        return false;
-
-    }
-    /**
-     * @Route("/category/edit/{id}", name="category_edit")
-     */
-    public function editAction($id, Request $request)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $category = $em->getRepository(Category::class)->find($id);
-
-        $form = $this->createForm(CategoryType::class, $category);
-
-        if ($this->saveChanges($form, $request, $category)) {
-            $this->addFlash(
-                'notice',
-                'Category Edited'
-            );
-            return $this->redirectToRoute('app_category');
-        }
-        return $this->render('category/edit.html.twig', [
-            'form' => $form->createView()
+        return $this->renderForm('category/edit.html.twig', [
+            'category' => $category,
+            'form' => $form,
         ]);
     }
     /**
-     * @Route("/category/delete/{id}", name="category_delete")
+     * @Route("/delete/{id}", name="category_delete")
      */
     public function deleteAction($id)
     {
@@ -111,6 +88,6 @@ class CategoryController extends AbstractController
             'error',
             'Category deleted'
         );
-        return $this->redirectToRoute('app_category');
+        return $this->redirectToRoute('app_category_index');
     }
 }
