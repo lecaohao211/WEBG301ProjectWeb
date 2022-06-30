@@ -16,15 +16,23 @@
             <td>{{ food.name }}</td>
         </tr>
         <tr>
+            <th>Category</th>
+            <td>{{ food.category ? food.category.name : '' }}</td>
+        </tr>
+        <tr>
+            <th>Chef</th>
+            <td>{{ food.chefID ? food.chefID.name : '' }}</td>
+        </tr>
+        <tr>
             <th>Price</th>
-            <td>{{ food.price }}</td>
+            <td>{{ food.price }}$</td>
         </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_food_index') }}">Back To List</a>
+    <a class="btn btn-link" href="{{ path('app_food_index') }}">Back To List</a>
 
-    <a href="{{ path('app_food_edit', {'id': food.id}) }}">Edit</a>
+    <a class="btn btn-warning" href="{{ path('app_food_edit', {'id': food.id}) }}">Edit</a>
 
 {#     {{ include('food/delete.html.twig') }}#}
 {% endblock %}

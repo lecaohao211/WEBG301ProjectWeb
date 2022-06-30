@@ -2,11 +2,40 @@
 
 {% block title %}New Food{% endblock %}
 
+{% block style %}
+    <style>
+        label {
+            width: 100px;
+            margin-right: 50px;
+            margin-bottom: 20px;
+        }
+        select,input {
+            min-width: 200px;
+            margin-bottom: 20px;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        h1 {
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        button {
+            width: 100%;
+        }
+    </style>
+{% endblock %}
+
 {% block body %}
     <h1>Create new Food</h1>
 
     {{ include('food/form.html.twig') }}
 
 
-    <a href="{{ path('app_food_index') }}">Back To List</a>
+    <a class="btn btn-link" href="{{ path('app_food_index') }}">Back To List</a>
 {% endblock %}

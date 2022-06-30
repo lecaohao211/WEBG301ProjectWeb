@@ -2,12 +2,43 @@
 
 {% block title %}Edit Food{% endblock %}
 
+{% block style %}
+    <style>
+        label {
+            width: 100px;
+            margin-right: 50px;
+            margin-bottom: 20px;
+        }
+        select,input {
+            min-width: 200px;
+            margin-bottom: 20px;
+        }
+        .delete-add {
+            position: absolute;
+            top: 394px;
+            right: 457px;
+
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        h1 {
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+    </style>
+{% endblock %}
+
 {% block body %}
     <h1>Edit Food</h1>
 
     {{ include('food/form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_food_index') }}">Back To List</a>
+    <a class="btn btn-link" href="{{ path('app_food_index') }}">Back To List</a>
 
     {{ include('food/delete.html.twig') }}
 {% endblock %}

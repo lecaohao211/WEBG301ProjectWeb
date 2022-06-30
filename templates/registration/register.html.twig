@@ -6,6 +6,11 @@
     <h1>Register</h1>
 
     {{ form_start(registrationForm) }}
+    <style>
+        body{
+            background-color: antiquewhite;
+        }
+    </style>
         {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.plainPassword, {
             label: 'Password'

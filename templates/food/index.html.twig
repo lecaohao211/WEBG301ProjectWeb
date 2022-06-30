@@ -46,9 +46,9 @@
         <thead>
         <tr>
             <th>Id</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Chef</th>
+            <th>Food Name</th>
+            <th>Price Food</th>
+            <th>Chef Name</th>
             <th>Category</th>
             <th>Actions</th>
         </tr>
@@ -58,12 +58,12 @@
             <tr>
                 <td>{{ food.id }}</td>
                 <td>{{ food.name }}</td>
-                <td>{{ food.price }}</td>
+                <td>{{ food.price }}$</td>
                 <td>{{ food.chefID ? food.chefID.name : '' }}</td>
                 <td>{{ food.category ? food.category.name : '' }}</td>
                 <td>
-                    <a href="{{ path('app_food_show', {'id': food.id}) }}">Show</a>
-                    <a href="{{ path('app_food_edit', {'id': food.id}) }}">Edit</a>
+                    <a class="btn btn-success"href="{{ path('app_food_show', {'id': food.id}) }}">Show</a>
+                    <a class="btn btn-warning" href="{{ path('app_food_edit', {'id': food.id}) }}">Edit</a>
                 </td>
             </tr>
         {% else %}
@@ -74,6 +74,6 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_food_new') }}">Create new</a>
-    <a href="{{ path('app_home') }}">Go home</a>
+    <a class="btn btn-secondary" href="{{ path('app_food_new') }}">Create new</a>
+    <a  class="btn btn-primary" href="{{ path('app_home') }}">Go home</a>
 {% endblock %}
