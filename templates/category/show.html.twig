@@ -5,12 +5,12 @@
     <hr/>
 
     <div>
-        <h3>Id : {{categories.id }}</h3>
+        <h3>Id : {{category.id }}</h3>
         <ul class="list-group">
-            <li class="list-group-item">Category: {{ categories.name }}</li>
+            <li class="list-group-item">Category: {{ category.name }}</li>
         </ul>
     </div>
-    <a style="margin: 10px 0 12px 5px" href="{{ path('app_category') }}">
+    <a style="margin: 10px 0 12px 5px" href="{{ path('app_category_index') }}">
         <button type="button" class="btn btn-secondary">Back to Category List</button>
     </a>
 
